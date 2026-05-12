@@ -12,17 +12,15 @@ export function useT(ns?: string) {
     throw new Error("useT is only available inside [lang]");
   }
 
-  // Хуки всегда вызываются — не внутри if/else
   const [activeLng, setActiveLng] = useState(i18next.resolvedLanguage);
 
   useEffect(() => {
-    // Ждём инициализации клиентского инстанса
     initPromise.then(() => {
       if (i18next.resolvedLanguage !== lang) {
         i18next.changeLanguage(lang);
       }
     });
-  }, []); // при монтировании
+  }, []); 
 
   useEffect(() => {
     if (activeLng === i18next.resolvedLanguage) return;

@@ -6,7 +6,7 @@ export async function getT(
   lang?: string | null,
   keyPrefix?: string
 ) {
-  await initPromise; // ← вот это главное, чего не хватало
+  await initPromise; 
 
   const language = lang ?? i18next.resolvedLanguage!;
 

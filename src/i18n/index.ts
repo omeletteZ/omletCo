@@ -1,22 +1,17 @@
 import i18next from "i18next";
 import resourcesToBackend from "i18next-resources-to-backend";
-import { LANGUAGES, FALLBACK_LANG, DEFAULT_NS } from "./settings";
+import { FALLBACK_LANG, I18N_BASE_CONFIG } from "./settings";
 
 const i18nInstance = i18next.createInstance();
 
 export const initPromise = i18nInstance
-  .use(
-    resourcesToBackend(
-      (language: string, namespace: string) =>
-        import(`./locales/${language}/${namespace}.json`)
-    )
-  )
+  .use(resourcesToBackend(
+    (language: string, namespace: string) =>
+      import(`./locales/${language}/${namespace}.json`)
+  ))
   .init({
-    supportedLngs: LANGUAGES,
-    fallbackLng: FALLBACK_LANG,
+    ...I18N_BASE_CONFIG,
     lng: FALLBACK_LANG,
-    fallbackNS: DEFAULT_NS,
-    defaultNS: DEFAULT_NS,
     contextSeparator: ".",
     returnObjects: true,
   });
