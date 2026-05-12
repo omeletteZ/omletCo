@@ -1,4 +1,4 @@
-import i18next from "./index";
+import i18next, { initPromise } from "./index";
 import { DEFAULT_NS } from "./settings";
 
 export async function getT(
@@ -6,6 +6,8 @@ export async function getT(
   lang?: string | null,
   keyPrefix?: string
 ) {
+  await initPromise; // ← вот это главное, чего не хватало
+
   const language = lang ?? i18next.resolvedLanguage!;
 
   if (language && i18next.resolvedLanguage !== language) {

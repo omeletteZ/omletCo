@@ -4,7 +4,7 @@ import { LANGUAGES, FALLBACK_LANG, DEFAULT_NS } from "./settings";
 
 const i18nInstance = i18next.createInstance();
 
-i18nInstance
+export const initPromise = i18nInstance
   .use(
     resourcesToBackend(
       (language: string, namespace: string) =>

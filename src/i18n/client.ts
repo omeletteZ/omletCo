@@ -8,7 +8,7 @@ import { LANGUAGES, FALLBACK_LANG, DEFAULT_NS } from "./settings";
 
 const i18nClient = i18next.createInstance();
 
-i18nClient
+export const initPromise = i18nClient
   .use(initReactI18next)
   .use(LanguageDetector)
   .use(
