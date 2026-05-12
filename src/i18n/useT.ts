@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
-import i18next, { initPromise } from "./client";
+import i18next from "./index"; // было ./client
 
 export function useT(ns?: string) {
   const lang = useParams().lang;
@@ -13,14 +13,6 @@ export function useT(ns?: string) {
   }
 
   const [activeLng, setActiveLng] = useState(i18next.resolvedLanguage);
-
-  useEffect(() => {
-    initPromise.then(() => {
-      if (i18next.resolvedLanguage !== lang) {
-        i18next.changeLanguage(lang);
-      }
-    });
-  }, []); 
 
   useEffect(() => {
     if (activeLng === i18next.resolvedLanguage) return;
